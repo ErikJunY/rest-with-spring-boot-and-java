@@ -1,5 +1,7 @@
 package io.github.erikjuny.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,5 +25,18 @@ public class PersonController {
 	public Person findById(@PathVariable("id") String id) {
 		return service.findById(id);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Person> findAll() {
+		return service.findAll();
+	}
+	
+	@RequestMapping(method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+		public Person create(Person person) {
+			return service.create(person);
+		}
 
 }
